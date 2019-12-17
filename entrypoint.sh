@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh -l
 # If any commands fail (exit code other than 0) entire script exits
 set -e
 
