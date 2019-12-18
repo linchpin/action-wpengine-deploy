@@ -7,7 +7,11 @@ RUN apt-get update \
 
 
 ADD entrypoint.sh /entrypoint.sh
+ADD bulid.sh /build.sh
+ADD deploy.sh /deploy.sh
 
 RUN chmod +x /entrypoint.sh
+RUN chmod +x /build.sh
+RUN chmod +x /deploy.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
