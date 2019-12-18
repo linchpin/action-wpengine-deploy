@@ -64,11 +64,11 @@ then
     repo=production
 fi
 
-if [[ repo == "production" ]]
+if [[ repo == "" ]]
 then
-    echo "yes it is prod"
+    echo "yes it is blank"
 else
-    echo "no it is not prod"
+    echo "no it is not blank"
 fi
 
 echo -e  "Install: ${WPE_INSTALL_PROD} or ${WPE_INSTALL}"
