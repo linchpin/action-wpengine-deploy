@@ -2,13 +2,6 @@
 # If any commands fail (exit code other than 0) entire script exits
 set -e
 
-if [[ "$PROJECT_TYPE" == "theme" ]]
-then
-    echo "yes"
-else
-    echo "no"
-fi
-
 # Check for required environment variables and make sure they are setup
 : ${PROJECT_TYPE?"PROJECT_TYPE Missing"} # theme|plugin
 : ${WPE_INSTALL?"WPE_INSTALL Missing"}   # subdomain for wpengine install (Legacy single environment setup)
@@ -71,7 +64,12 @@ then
     repo=production
 fi
 
-repo=production
+if [[ repo == "production" ]]
+then
+    echo "yes it is prod"
+else
+    echo "no it is not prod"
+fi
 
 echo -e  "Install: ${WPE_INSTALL_PROD} or ${WPE_INSTALL}"
 echo -e  "Repo: ${repo}"
