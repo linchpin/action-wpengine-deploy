@@ -53,9 +53,9 @@ fi
 echo -e  "Install: ${WPE_INSTALL_PROD} or ${WPE_INSTALL}"
 echo -e  "Repo: ${repo}"
 
-# Begin from the ~/clone directory
+# Begin from the clone directory
 # this directory is the default your git project is checked out into by Codeship.
-cd ~/clone
+cd clone
 
 # Get official list of files/folders that are not meant to be on production if $EXCLUDE_LIST is not set.
 if [[ -z "${EXCLUDE_LIST}" ]]; then
@@ -80,7 +80,7 @@ done
 rm exclude-list.txt
 
 # go back home
-cd ~
+cd ..
 
 # Clone the WPEngine files to the deployment directory
 # if we are not force pushing our changes
@@ -97,8 +97,6 @@ if [ "$?" != "0" ] ; then
     echo "Unable to clone ${repo}"
     kill -SIGINT $$
 fi
-
-cd ~ # go back home
 
 # check to see if we have a deployment folder, if so change directory to it. If not make the directory an initialize a git repo
 if [ ! -d ./deployment ]; then
