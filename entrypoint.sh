@@ -1,12 +1,12 @@
-#!/bin/bash
-# If any commands fail (exit code other than 0) entire script exits
-set -e
+#!/usr/bin/env bash
 
-chmod 555 ./build.sh
-chmod 555 ./deploy.sh
+# custom path for files to override default files
+custom_path="$GITHUB_WORKSPACE/.github/deploy"
+main_script="/build-deploy.sh"
 
-# Call our build script
-sh ./build.sh
+if [[ -d "$custom_path" ]]; then
+    rsync -av "$custom_path/" /
+    chmod +x /*.sh
+fi
 
-# Call our deploy script after the build has been completed without any errors
-sh ./deploy.sh
+bash "$main_script"
