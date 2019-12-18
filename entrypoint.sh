@@ -64,7 +64,7 @@ then
     repo=production
 fi
 
-if [[ repo == "" ]]
+if [[ "$repo" == "" ]]
 then
     echo "yes it is blank"
 else
