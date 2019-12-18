@@ -7,6 +7,7 @@ RUN apt-get update \
 
 
 ADD entrypoint.sh /entrypoint.sh
+ADD build-deploy.sh /build-deploy.sh
 ADD build.sh /build.sh
 ADD deploy.sh /deploy.sh
 
