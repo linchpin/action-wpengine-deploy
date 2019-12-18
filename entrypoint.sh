@@ -7,7 +7,7 @@ set -e
 : ${WPE_INSTALL?"WPE_INSTALL Missing"}   # subdomain for wpengine install (Legacy single environment setup)
 : ${REPO_NAME?"REPO_NAME Missing"}       # repo name (Typically the folder name of the project)
 
-CI_BRANCH={GITHUB_REF##*/}
+CI_BRANCH=${GITHUB_REF##*/}
 
 SSH_PATH="$HOME/.ssh"
 WPENGINE_HOST="git.wpengine.com"
