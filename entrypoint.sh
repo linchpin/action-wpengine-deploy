@@ -2,13 +2,12 @@
 # If any commands fail (exit code other than 0) entire script exits
 set -e
 
-echo "$PROJECT_TYPE"
-echo "$REPO_NAME"
-echo "$WPENGINE_SSH_KEY_PRIVATE"
-echo "$WPENGINE_SSH_KEY_PUBLIC"
-echo "$WPE_INSTALL"
-echo "$WPE_INSTALL_PROD"
-echo "$WPE_INSTALL_STAGE"
+if [[ "$PROJECT_TYPE" == "theme" ]]
+then
+    echo "yes"
+else
+    echo "no"
+fi
 
 # Check for required environment variables and make sure they are setup
 : ${PROJECT_TYPE?"PROJECT_TYPE Missing"} # theme|plugin
