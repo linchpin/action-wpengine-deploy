@@ -64,6 +64,8 @@ then
     repo=production
 fi
 
+repo=production
+
 echo -e  "Install: ${WPE_INSTALL_PROD} or ${WPE_INSTALL}"
 echo -e  "Repo: ${repo}"
 
