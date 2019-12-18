@@ -2,4 +2,4 @@
 bash /build.sh
 
 # Call our deploy script after the build has been completed without any errors
-bach /deploy.sh
+bash /deploy.sh
