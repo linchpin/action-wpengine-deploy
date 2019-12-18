@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
 
-# custom path for files to override default files
-custom_path="$GITHUB_WORKSPACE/.github/deploy"
 main_script="/build-deploy.sh"
 
-if [[ -d "$custom_path" ]]; then
-    rsync -av "$custom_path/" /
-    chmod +x /*.sh
-fi
+chmod +x /*.sh
 
 bash "$main_script"

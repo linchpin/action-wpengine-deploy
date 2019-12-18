@@ -11,6 +11,6 @@ ADD build-deploy.sh /build-deploy.sh
 ADD build.sh /build.sh
 ADD deploy.sh /deploy.sh
 
-RUN chmod 555 /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]`
