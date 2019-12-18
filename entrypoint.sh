@@ -27,6 +27,8 @@ chmod 644 "$KNOWN_HOSTS_PATH"
 chmod 600 "$WPENGINE_SSH_KEY_PRIVATE_PATH"
 chmod 644 "$WPENGINE_SSH_KEY_PUBLIC_PATH"
 
+git config --global user.email "actions@github.com"
+git config --global user.name "Git Actions"
 git config --global core.sshCommand "ssh -i $WPENGINE_SSH_KEY_PRIVATE_PATH -o UserKnownHostsFile=$KNOWN_HOSTS_PATH"
 
 # Set repo based on current branch, by default master=production, develop=staging
@@ -62,13 +64,6 @@ if [[ "$CI_BRANCH" == "develop" && -n "$WPE_INSTALL_DEV" ]]
 then
     target_wpe_install=${WPE_INSTALL_DEV}
     repo=production
-fi
-
-if [[ "$repo" == "" ]]
-then
-    echo "yes it is blank"
-else
-    echo "no it is not blank"
 fi
 
 echo -e  "Install: ${WPE_INSTALL_PROD} or ${WPE_INSTALL}"
