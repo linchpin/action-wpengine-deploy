@@ -27,7 +27,7 @@ chmod 644 "$KNOWN_HOSTS_PATH"
 chmod 600 "$WPENGINE_SSH_KEY_PRIVATE_PATH"
 chmod 644 "$WPENGINE_SSH_KEY_PUBLIC_PATH"
 
-git config core.sshCommand "ssh -i $WPENGINE_SSH_KEY_PRIVATE_PATH -o UserKnownHostsFile=$KNOWN_HOSTS_PATH"
+git config --global core.sshCommand "ssh -i $WPENGINE_SSH_KEY_PRIVATE_PATH -o UserKnownHostsFile=$KNOWN_HOSTS_PATH"
 
 # Set repo based on current branch, by default master=production, develop=staging
 # @todo support custom branches
