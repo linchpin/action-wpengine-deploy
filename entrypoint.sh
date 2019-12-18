@@ -15,6 +15,18 @@ KNOWN_HOSTS_PATH="$SSH_PATH/known_hosts"
 WPENGINE_SSH_KEY_PRIVATE_PATH="$SSH_PATH/wpengine_key"
 WPENGINE_SSH_KEY_PUBLIC_PATH="$SSH_PATH/wpengine_key.pub"
 
+mkdir "$SSH_PATH"
+
+ssh-keyscan -t rsa "$WPENGINE_HOST" >> "$KNOWN_HOSTS_PATH"
+
+echo "$WPENGINE_SSH_KEY_PRIVATE" > "$WPENGINE_SSH_KEY_PRIVATE_PATH"
+echo "$WPENGINE_SSH_KEY_PUBLIC" > "$WPENGINE_SSH_KEY_PUBLIC_PATH"
+
+chmod 700 "$SSH_PATH"
+chmod 644 "$KNOWN_HOSTS_PATH"
+chmod 600 "$WPENGINE_SSH_KEY_PRIVATE_PATH"
+chmod 644 "$WPENGINE_SSH_KEY_PUBLIC_PATH"
+
 # Set repo based on current branch, by default master=production, develop=staging
 # @todo support custom branches
 
@@ -133,18 +145,6 @@ fi
 
 # Move files into the deployment folder
 rsync -a ../clone/* ./wp-content/${PROJECT_TYPE}s/${REPO_NAME}
-
-mkdir "$SSH_PATH"
-
-ssh-keyscan -t rsa "$WPENGINE_HOST" >> "$KNOWN_HOSTS_PATH"
-
-echo "$WPENGINE_SSH_KEY_PRIVATE" > "$WPENGINE_SSH_KEY_PRIVATE_PATH"
-echo "$WPENGINE_SSH_KEY_PUBLIC" > "$WPENGINE_SSH_KEY_PUBLIC_PATH"
-
-chmod 700 "$SSH_PATH"
-chmod 644 "$KNOWN_HOSTS_PATH"
-chmod 600 "$WPENGINE_SSH_KEY_PRIVATE_PATH"
-chmod 644 "$WPENGINE_SSH_KEY_PUBLIC_PATH"
 
 git config core.sshCommand "ssh -i $WPENGINE_SSH_KEY_PRIVATE_PATH -o UserKnownHostsFile=$KNOWN_HOSTS_PATH"
 
