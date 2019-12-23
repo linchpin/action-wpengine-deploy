@@ -2,23 +2,28 @@ name: 'Deploy to WP Engine'
 description: 'Deploy a WordPress plugin or theme to WP Engine using git push'
 author: 'Linchpin'
 inputs:
-  tag_name:
-    description: 'The name of the tag. This should come from the webhook payload, `github.GITHUB_REF` when a user pushes a new tag'
+  project_type:
+    description: 'The type of WordPress Project you are deploying (plugin|theme)'
     required: true
-  release_name:
-    description: 'The name of the release. For example, `Release v1.0.1`'
+    default: 'plugin'
+  repo_name:
+    description: 'The name of the repo/folder name the project will be deployed to'
     required: true
-  body:
-    description: 'Text describing the contents of the tag.'
+  wpengine_ssh_key_private:
+    description: 'private key generated for usage in this action'
     required: false
-  draft:
-    description: '`true` to create a draft (unpublished) release, `false` to create a published one. Default: `false`'
+  wpengine_ssh_key_public:
+    description: 'public key generate for usage in this action'
     required: false
-    default: false
-  prerelease:
-    description: '`true` to identify the release as a prerelease. `false` to identify the release as a full release. Default: `false`'
+  wpe_install:
+    description: 'The wpengine install subdomain we are deploying to'
     required: false
-    default: false
+  wpe_install_prod:
+    description: 'The production wpengine install subdomain we are deploying to'
+    required: false
+  wpe_install_staging:
+      description: 'The staging wpengine install subdomain we are deploying to'
+      required: false
 outputs:
   success:
     description: 'Did the deploy happen or not?'

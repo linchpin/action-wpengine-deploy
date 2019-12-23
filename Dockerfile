@@ -9,6 +9,7 @@ RUN apt-get update \
 RUN curl -sL https://deb.nodesource.com/setup_13.x | bash -
 
 RUN apt-get install -y nodejs
+RUN npm install -g yarn
 
 COPY *.sh /
 RUN chmod +x /*.sh
