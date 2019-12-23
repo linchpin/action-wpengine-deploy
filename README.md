@@ -118,6 +118,8 @@ jobs:
           WPE_INSTALL_STAGE: ${{ secrets.WPE_INSTALL_STAGE }}
 ```
 
+![Linchpin](https://github.com/linchpin/brand-assets/raw/master/github-opensource-banner.png)
+
 ## Useful Notes
 
 * WP Engine's .git push can almost be considered a "middle man" between your repo and what is actually displayed to your visitors within the root web directory of your website. After the files are .git pushed to your production, staging, or develop remote branches they are then synced to the appropriate environment's webroot. It's important to know this because there are scenarios where you may need to use the **#force** hashtag within your commit message in order to override what WP Engine is storing within it's repo and what is shown when logged into SFTP. You can read more about it on [WP Engine](https://wpengine.com/support/resetting-your-git-push-to-deploy-repository/)
