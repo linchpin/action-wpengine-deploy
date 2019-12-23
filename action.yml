@@ -9,10 +9,10 @@ inputs:
   repo_name:
     description: 'The name of the repo/folder name the project will be deployed to'
     required: true
-  wpengine_ssh_key_private:
+  wpe_ssh_key_private:
     description: 'private key generated for usage in this action'
     required: false
-  wpengine_ssh_key_public:
+  wpe_ssh_key_public:
     description: 'public key generate for usage in this action'
     required: false
   wpe_install:

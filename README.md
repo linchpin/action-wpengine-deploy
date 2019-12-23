@@ -51,8 +51,8 @@ All of the environment variables (secrets) below are required
 
 |Variable|Description|Required|
 | ------------- | ------------- | ------------- |
-|**WPENGINE_SSH_KEY_PRIVATE**|Private SSH key of your WP Engine git deploy user. See below for SSH key usage.|:heavy_exclamation_mark:|
-|**WPENGINE_SSH_KEY_PUBLIC**|Public SSH key of your WP Engine git deploy user. See below for SSH key usage.|:heavy_exclamation_mark:|
+|**WPE_SSH_KEY_PRIVATE**|Private SSH key of your WP Engine git deploy user. See below for SSH key usage.|:heavy_exclamation_mark:|
+|**WPE_SSH_KEY_PUBLIC**|Public SSH key of your WP Engine git deploy user. See below for SSH key usage.|:heavy_exclamation_mark:|
 |**REPO_NAME**|The repo name should match the theme / plugin folder name|:heavy_exclamation_mark:|
 |**WPE_INSTALL**|The subdomain of your WP Engine install **(This is for single installs only and is considered deprecated)**|:heavy_exclamation_mark:|
 |**PROJECT_TYPE**|(**"theme"** or **"plugin"**) This really just determines what base folder your repo should be deployed to|:heavy_exclamation_mark:|
@@ -111,8 +111,8 @@ jobs:
         env:
           PROJECT_TYPE: ${{ secrets.PROJECT_TYPE }}
           REPO_NAME: ${{ secrets.REPO_NAME }}
-          WPENGINE_SSH_KEY_PRIVATE: ${{ secrets.WPENGINE_SSH_KEY_PRIVATE }}
-          WPENGINE_SSH_KEY_PUBLIC: ${{ secrets.WPENGINE_SSH_KEY_PUBLIC }}
+          WPE_SSH_KEY_PRIVATE: ${{ secrets.WPE_SSH_KEY_PRIVATE }}
+          WPE_SSH_KEY_PUBLIC: ${{ secrets.WPE_SSH_KEY_PUBLIC }}
           WPE_INSTALL: ${{ secrets.WPE_INSTALL }}
           WPE_INSTALL_PROD: ${{ secrets.WPE_INSTALL_PROD }}
           WPE_INSTALL_STAGE: ${{ secrets.WPE_INSTALL_STAGE }}
