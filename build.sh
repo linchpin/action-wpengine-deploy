@@ -54,6 +54,7 @@ then
 	if [ "$build_type" == "gulp_yarn" ]
 	then
 		echo "Yarn Install"
+		yarn global add gulp-cli
 		yarn install
 	
 		# Only build if the build:production task exists in the build path
