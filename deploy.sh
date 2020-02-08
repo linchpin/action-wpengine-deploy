@@ -41,7 +41,6 @@ target_wpe_install=${WPE_INSTALL}
 if [[ "$CI_BRANCH" == "master" && -n "$WPE_INSTALL" ]]
 then
     target_wpe_install=${WPE_INSTALL}
-    repo=production
 fi
 
 echo -e  "Install: ${WPE_INSTALL}"
@@ -128,7 +127,7 @@ fi
 rsync -a ../build/* ./wp-content/${PROJECT_TYPE}s/${REPO_NAME}
 
 # Stage, commit, and push to wpengine repo
-git remote add ${repo} git@git.wpengine.com:${repo}/${target_wpe_install}.git
+git remote add production git@git.wpengine.com:production/${target_wpe_install}.git
 
 git add --all
 git commit -am "Deployment to ${target_wpe_install} production by $CI_COMMITTER_NAME from $CI_NAME"
