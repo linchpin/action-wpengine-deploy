@@ -18,12 +18,6 @@ inputs:
   wpe_install:
     description: 'The wpengine install subdomain we are deploying to'
     required: false
-  wpe_install_prod:
-    description: 'The production wpengine install subdomain we are deploying to'
-    required: false
-  wpe_install_staging:
-      description: 'The staging wpengine install subdomain we are deploying to'
-      required: false
 outputs:
   success:
     description: 'Did the deploy happen or not?'

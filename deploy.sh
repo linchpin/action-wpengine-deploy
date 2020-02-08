@@ -37,36 +37,14 @@ git config --global core.sshCommand "ssh -i $WPE_SSH_KEY_PRIVATE_PATH -o UserKno
 # This is considered legacy wpengine setup and should be deprecated. We'll keep this workflow in place for backwards compatibility.
 target_wpe_install=${WPE_INSTALL}
 
-if [[ "$CI_BRANCH" == "master" && -n "$WPE_INSTALL" ]]
-then
-    repo=production
-else
-    if [[ "$CI_BRANCH" == "develop" && -n "$WPE_INSTALL" ]]
-    then
-        repo=staging
-    fi
-fi
-
 # In WP Engine's multi-environment setup, we'll target each instance based on branch with variables to designate them individually.
-if [[ "$CI_BRANCH" == "master" && -n "$WPE_INSTALL_PROD" ]]
+if [[ "$CI_BRANCH" == "master" && -n "$WPE_INSTALL" ]]
 then
     target_wpe_install=${WPE_INSTALL_PROD}
     repo=production
 fi
 
-if [[ "$CI_BRANCH" == "staging" && -n "$WPE_INSTALL_STAGE" ]]
-then
-    target_wpe_install=${WPE_INSTALL_STAGE}
-    repo=production
-fi
-
-if [[ "$CI_BRANCH" == "develop" && -n "$WPE_INSTALL_DEV" ]]
-then
-    target_wpe_install=${WPE_INSTALL_DEV}
-    repo=production
-fi
-
-echo -e  "Install: ${WPE_INSTALL_PROD} or ${WPE_INSTALL}"
+echo -e  "Install: ${WPE_INSTALL}"
 echo -e  "Repo: ${repo}"
 
 # Begin from the clone directory
@@ -98,7 +76,7 @@ rm exclude-list.txt
 # go back home
 cd ..
 
-# Clone the WPEngine files to the deployment directory
+# Clone the WP Engine files to the deployment directory
 # if we are not force pushing our changes
 if [[ "$CI_MESSAGE" != *#force* ]]
 then
@@ -148,7 +126,7 @@ then
 fi
 
 # Move files into the deployment folder
-rsync -a ../clone/* ./wp-content/${PROJECT_TYPE}s/${REPO_NAME}
+rsync -a ../build/* ./wp-content/${PROJECT_TYPE}s/${REPO_NAME}
 
 # Stage, commit, and push to wpengine repo
 git remote add ${repo} git@git.wpengine.com:${repo}/${target_wpe_install}.git

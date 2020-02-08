@@ -2,4 +2,4 @@
 
 chmod +x /*.sh
 
-bash /build-deploy.sh
+bash /deploy.sh
