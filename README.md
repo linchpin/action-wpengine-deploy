@@ -11,7 +11,7 @@ Love WordPress? Love WP Engine and want to take advantage of their git deploymen
 ### Important Changes Regarding the build process compared to v1.0
 
 * This action will *ONLY* *deploy* your code. Previously in version 1.0 this script would build your project as well.
-* In order to build your project take a look at our other action 
+* In order to build your project take a look at our other action [Linchpin Build Action](https://github.com/linchpin/action-build-yarn-npm)
 * This deployment action not longer supports WP Engine legacy staging. We recommend using the new multi environment setups
 
 ### The instructions and the deployment script assumes the following
