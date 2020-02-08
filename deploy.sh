@@ -40,7 +40,7 @@ target_wpe_install=${WPE_INSTALL}
 # In WP Engine's multi-environment setup, we'll target each instance based on branch with variables to designate them individually.
 if [[ "$CI_BRANCH" == "master" && -n "$WPE_INSTALL" ]]
 then
-    target_wpe_install=${WPE_INSTALL_PROD}
+    target_wpe_install=${WPE_INSTALL}
     repo=production
 fi
 
