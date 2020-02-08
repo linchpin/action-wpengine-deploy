@@ -16,7 +16,7 @@ inputs:
     description: 'public key generate for usage in this action'
     required: false
   wpe_install:
-    description: 'The wpengine install subdomain we are deploying to'
+    description: 'The WP Engine install subdomain we are deploying to'
     required: false
 outputs:
   success:

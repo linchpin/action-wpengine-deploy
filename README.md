@@ -6,13 +6,13 @@ This GitHub Action deploys your theme or plugin in `GITHUB_WORKSPACE` to a WP En
 
 Love WordPress? Love WP Engine and want to take advantage of their git deployment but need to have more flexibility to deploy multiple repos? This script will assist you in automatically deploying WordPress plugins and themes to [WP Engine .git deployment](https://wpengine.com/git/) using [Codeship](https://codeship.com) or other deployment services.
 
-# Public Release Version 1.0
+# Public Release Version 1.1
 
-### Important Changes Regarding the build process compared to v1
+### Important Changes Regarding the build process compared to v1.0
 
-This action will  *build* and *deploy* your code as long as the script finds a `gulpfile`, `gruntfile`, `yarn` etc. In order to build your project simply create a task in your task runner named `build:production`.
-
-*Supports both WP Engine legacy and Multi environment sites (Legacy Staging or Dev, Staging, Production)*
+* This action will *ONLY* *deploy* your code. Previously in version 1.0 this script would build your project as well.
+* In order to build your project take a look at our other action 
+* This deployment action not longer supports WP Engine legacy staging. We recommend using the new multi environment setups
 
 ### The instructions and the deployment script assumes the following
 
@@ -54,16 +54,14 @@ All of the environment variables (secrets) below are required
 |**WPE_SSH_KEY_PRIVATE**|Private SSH key of your WP Engine git deploy user. See below for SSH key usage.|:heavy_exclamation_mark:|
 |**WPE_SSH_KEY_PUBLIC**|Public SSH key of your WP Engine git deploy user. See below for SSH key usage.|:heavy_exclamation_mark:|
 |**REPO_NAME**|The repo name should match the theme / plugin folder name|:heavy_exclamation_mark:|
-|**WPE_INSTALL**|The subdomain of your WP Engine install **(This is for single installs only and is considered deprecated)**|:heavy_exclamation_mark:|
+|**WPE_INSTALL**|The subdomain of your WP Engine install|:heavy_exclamation_mark:|
 |**PROJECT_TYPE**|(**"theme"** or **"plugin"**) This really just determines what base folder your repo should be deployed to|:heavy_exclamation_mark:|
 
-The variables below are not required, but are utilized to work with WP Engine's current multi-environment setup. Moving away from legacy staging, WP Engine now utilizes 3 individual installs under one "site". The are all essentially part of your same hosting environment, but are treated as Production, Staging, and Development environments when it comes to your workflow.
+The variable below is required to work with WP Engine's current multi-environment setup. Moving away from legacy staging, WP Engine now utilizes 3 individual installs under one "site". The are all essentially part of your same hosting environment, but are treated as Production, Staging, and Development environments (with their own subdomains). They can be considered multiple workflows that can have individual github actions.
 
 |Variable|Description|Required|
 | ------------- | ------------- | ------------- |
-|**WPE_INSTALL_PROD**|The subdomain from WP Engine install "Production"||
-|**WPE_INSTALL_STAGE**|The subdomain from WP Engine install "Staging"||
-|**WPE_INSTALL_DEV**|The subdomain from WP Engine install "Development"||
+|**WPE_INSTALL**|The subdomain from WP Engine install||
 
 This variable is optional to source a custom excludes list file.
 
@@ -88,7 +86,7 @@ In the script below you will see this script is specifically for **master** if y
 
 In order to deploy to your pipeline you can use the following command regardless of master, develop or a custom branch. We are utilizing `https` instead of `SSH` so we can `git clone` the deployment script without requiring authentication.
 
-**Example Workflow:**
+**Example Basic Workflow:**
 ```
 name: Deploy to WPEngine
 on:
@@ -114,8 +112,6 @@ jobs:
           WPE_SSH_KEY_PRIVATE: ${{ secrets.WPE_SSH_KEY_PRIVATE }}
           WPE_SSH_KEY_PUBLIC: ${{ secrets.WPE_SSH_KEY_PUBLIC }}
           WPE_INSTALL: ${{ secrets.WPE_INSTALL }}
-          WPE_INSTALL_PROD: ${{ secrets.WPE_INSTALL_PROD }}
-          WPE_INSTALL_STAGE: ${{ secrets.WPE_INSTALL_STAGE }}
 ```
 
 ![Linchpin](https://github.com/linchpin/brand-assets/raw/master/github-opensource-banner.png)
