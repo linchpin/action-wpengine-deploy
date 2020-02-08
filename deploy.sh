@@ -45,7 +45,6 @@ then
 fi
 
 echo -e  "Install: ${WPE_INSTALL}"
-echo -e  "Repo: ${repo}"
 
 # Begin from the clone directory
 # this directory is the default your git project is checked out into by Codeship.
@@ -81,14 +80,14 @@ cd ..
 if [[ "$CI_MESSAGE" != *#force* ]]
 then
     force=''
-    git clone git@git.wpengine.com:${repo}/${target_wpe_install}.git ./deployment
+    git clone git@git.wpengine.com:production/${target_wpe_install}.git ./deployment
 else
     force='-f'
 fi
 
 # If there was a problem cloning, exit
 if [ "$?" != "0" ] ; then
-    echo "Unable to clone ${repo}"
+    echo "Unable to clone production"
     kill -SIGINT $$
 fi
 
@@ -132,6 +131,6 @@ rsync -a ../build/* ./wp-content/${PROJECT_TYPE}s/${REPO_NAME}
 git remote add ${repo} git@git.wpengine.com:${repo}/${target_wpe_install}.git
 
 git add --all
-git commit -am "Deployment to ${target_wpe_install} $repo by $CI_COMMITTER_NAME from $CI_NAME"
+git commit -am "Deployment to ${target_wpe_install} production by $CI_COMMITTER_NAME from $CI_NAME"
 
-git push ${force} ${repo} master
+git push ${force} production master
